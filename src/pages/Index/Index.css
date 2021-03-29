@@ -1,0 +1,22 @@
+#container {
+    text-align: center;
+    margin-top: 5%;
+}
+
+#controls {
+    text-align: center;
+}
+
+#controls > button > img {
+    width: 3.5em;
+    height: 3.5em;    
+}
+
+#controls > button {
+    background-color: transparent;
+    border: none;
+}
+
+#controls > button:hover {
+    cursor: pointer;
+}
