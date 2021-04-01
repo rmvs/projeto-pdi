@@ -1,0 +1,60 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <canvas id="canvas1"></canvas>
+        <script>
+            let cnv2 = document.getElementById("canvas1").getContext("2d");
+            let cnv = document.createElement("canvas");
+            let image = new Image();            
+            image.crossOrigin = "Anonymous";
+            var that = this;
+            image.onload = () => {
+                let ctx = cnv.getContext("2d");
+                ctx.drawImage(image,0,0,200,200);
+                let imageData = ctx.getImageData(0,0,200,200)
+                // let arr = that.applyFilter(imageData.data,100,100);   
+
+                // cnv2.putImageData(new ImageData(imageData.data,100,100),0,0)
+                cnv2.putImageData(imageData,0,0)
+                console.log(ctx)
+            }
+            image.src = "./sprites/cake_2.png";
+
+        let randomSize = (max,min) => {
+            return Math.random() * (max - min) + min;
+        };
+
+        function applyFilter(img,width,height){
+        let i = Math.round(randomSize(10000,300));
+        let num_pixels = 0;
+        
+        for(var j = 0;j < i;j++){
+            let y_coord = Math.round(randomSize(height-1,0));
+            let x_coord = Math.round(randomSize(width-1,0));
+
+            let red = y_coord * (width * 4) + x_coord * 4;
+
+            img[red] = 255;
+            img[red + 1] = 255; // green
+            img[red + 2] = 255; // blue
+            // alpha: red + 3
+            num_pixels = Math.round(randomSize(10000,300));            
+        }
+
+        for(var j = 0;j < i;j++){
+            let y_coord = Math.round(randomSize(height - 1,0));
+            let x_coord = Math.round(randomSize(width - 1,0));
+
+            let red = y_coord * (width * 4) + x_coord * 4;
+            img[red] = 0;
+            img[red + 1] = 0; // green
+            img[red + 2] = 0; // blue  
+            // alpha: red + 3     
+        }        
+        return img;
+    }
+        </script>
+    </body>
+</html>
